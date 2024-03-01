@@ -6,6 +6,7 @@ import (
 	
 	// is a lightweight http route
 	"github.com/go-chi/chi/v5"
+	"github.com/Kumar-pai/go-restfulapi-practices/database"
 )
 
 func NewRoute() (*chi.Mux, error) {
@@ -14,5 +15,10 @@ func NewRoute() (*chi.Mux, error) {
 		writer.Write([]byte("Hello Word!"))
 	})
 	
+	_, err := database.DBConn()
+	if err != nil {
+		return nil, err
+	}
+
 	return r, nil
 }
