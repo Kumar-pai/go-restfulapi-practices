@@ -36,8 +36,14 @@ func NewServer() (*Server, error) {
 
 	addr := appUrl + ":" + port
 
+	route, err:= NewRoute()
+	if err != nil {
+		return nil, err
+	}
+
 	svr := http.Server{
 		Addr: addr,
+		Handler: route,
 	}
 
 	return &Server{&svr}, nil
